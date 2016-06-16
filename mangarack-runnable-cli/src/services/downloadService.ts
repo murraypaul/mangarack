@@ -122,11 +122,14 @@ function getChapterName(series: mio.ISeries, chapter: mio.IChapter): mio.IOption
 				chapterName += ` V${format(2, chapter.volume.value)}`;
 			}
 			chapterName += ` #${format(3, chapter.number.value)}`;
+			if( mio.settingService.getBoolean('runnable.cli.filename.addTitle') && chapter.title.length > 0 ) {
+				chapterName += ` \'${chapter.title.replace(/[\. ]*$/, '').replace(/[:\\\\/*?|<>\"]/g, '_').replace(/\p{Cntrl}/g, '_')}\'`;
+			}
 			if( mio.settingService.getBoolean('runnable.cli.filename.addLanguage') && chapter.language.hasValue ) {
 				chapterName += ` (${chapter.language.value})`;
 			}
 			if( mio.settingService.getBoolean('runnable.cli.filename.addGroup') && chapter.group.hasValue ) {
-				chapterName += ` [${chapter.group.value.replace(/[:\\\\/*?|<>]/g, '_').replace(/\p{Cntrl}/g, '_')}]`;
+				chapterName += ` [${chapter.group.value.replace(/[:\\\\/*?|<>\"]/g, '_').replace(/\p{Cntrl}/g, '_')}]`;
 			}
 			chapterName += '.cbz';
 			return mio.option(chapterName);

@@ -54,7 +54,7 @@ export let downloadService: mio.IDownloadService = {
           throw new Error(`Invalid processed page #${page.number}`);
         }
       }
-      await zip.writeAsync(`000.${mio.helperService.getImageExtension(seriesPreviewImage)}`, seriesPreviewImage);
+//      await zip.writeAsync(`000.${mio.helperService.getImageExtension(seriesPreviewImage)}`, seriesPreviewImage);
       await zip.writeAsync('ComicInfo.xml', mio.metaService.createXml(series, chapter, pages));
       await zip.commitAsync();
     }

@@ -234,7 +234,7 @@ export let metaService: mio.IMetaService = {
 			LanguageISO: chapter.language.hasValue ? getLanguageCode(String(chapter.language.value)) : '',
       Manga: series.type === mio.SeriesType.Manga ? 'YesAndRightToLeft' : '',
       Number: chapter.number.hasValue ? String(chapter.number.value) : '',
-      Pages: {page: [{image: 0, type: 'FrontCover'}].concat(pages.map(page => ({image: page.number, type: ''})))},
+      Pages: {page: /*[{image: 0, type: 'FrontCover'}].concat(*/pages.map(page => ({image: page.number, type: ''}))/*)*/},
       Penciller: series.artists.join(', '),
 			ScanInformation: chapter.group.hasValue ? String(chapter.group.value) : '',
       Series: series.title,

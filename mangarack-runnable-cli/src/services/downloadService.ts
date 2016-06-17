@@ -74,7 +74,9 @@ export let downloadService: mio.IDownloadService = {
     for (let chapter of series.chapters) {
       await downloadService.chapterAsync(provider, series, seriesPreviewImage, chapter);
     }
-    await cleanAsync(series);
+		if( !mio.settingService.getBoolean('runnable.cli.dryRun') && !mio.settingService.getBoolean('runnable.cli.noRename') ) {
+    	await cleanAsync(series);
+		}
     console.log(`Finished ${series.title} ${prettyElapsedTime(beginTime)}`);
   }
 };

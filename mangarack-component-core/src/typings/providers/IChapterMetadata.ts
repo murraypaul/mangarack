@@ -20,5 +20,17 @@ export interface IChapterMetadata {
   /**
    * Contains the volume.
    */
-  volume?: number;
+  volume: mio.IOption<number>;
+  /**
+   * Contains the scanning group.
+   */
+  group: mio.IOption<string>;
+  /**
+   * Contains the scanlation language.
+   */
+  language: mio.IOption<string>;
+  /**
+   * Contains the upload date.
+   */
+  uploadDate: mio.IOption<number>;
 }

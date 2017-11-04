@@ -99,7 +99,11 @@ function getChapters($: mio.IHtmlServiceDocument): mio.IChapter[] {
           results.push(createChapter(address, {
             number: isFinite(numberValue) ? numberValue : undefined,
             title: /^Read Onl?ine$/i.test(title) ? '' : title,
-            volume: parseFloat(volumeMatch)
+            version: mio.option<number>(),
+            volume: mio.option(parseFloat(match[1])),
+            group: mio.option<string>(),
+            language: mio.option<string>(),
+            uploadDate: mio.option<number>()
           }));
         }
       });

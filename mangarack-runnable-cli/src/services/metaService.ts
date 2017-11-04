@@ -254,10 +254,13 @@ export let metaService: mio.IMetaService = {
 function titleCase(item: any): any {
   let result: any = Array.isArray(item) ? [] : {};
   for (let key in item) {
-    let value = item[key];
-    if (item.hasOwnProperty(key) && value != null) {
-      let title = key.charAt(0).toUpperCase() + key.substr(1);
-      result[title] = typeof value === 'object' ? titleCase(value) : value;
+    if (item.hasOwnProperty(key)) {
+      let value = item[key];
+      let isObject = typeof value === 'object';
+      if (value || !isObject) {
+        let title = key.charAt(0).toUpperCase() + key.substr(1);
+        result[title] = isObject ? titleCase(value) : value;
+      }
     }
   }
   return result;
